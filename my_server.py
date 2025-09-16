@@ -18,22 +18,31 @@ def web_search(query: str) -> str:
     api_key = os.getenv("SERPAPI_API_KEY")
     if not api_key:
         return "Error: SERPAPI_API_KEY environment variable not set."
+    
     params = {
         "q": query,
         "api_key": api_key,
         "engine": "google",
         "num": 5
     }
-    search = GoogleSearch(params)
-    results = search.get_dict()
+    
+    try:
+        search = GoogleSearch(params)
+        results = search.get_dict()
+    except Exception as e:
+        return f"Error fetching search results: {e}"
+    
+    organic = results.get("organic_results", [])
+    if not organic:
+        return f"No results found. Full response: {results}"
+    
     summaries = []
-    for res in results.get("organic_results", [])[:3]:
+    for res in organic[:3]:
         title = res.get("title", "No title")
         link = res.get("link", "No link")
         snippet = res.get("snippet", "")
         summaries.append(f"{title}: {snippet} ({link})")
-    if not summaries:
-        return "No results found."
+    
     return "\n".join(summaries)
     
 
