@@ -38,4 +38,4 @@ def web_search(query: str) -> str:
     
 
 if __name__ == "__main__":
-    mcp.run(transport="http", host="localhost", port=8000)
+    mcp.run(transport="http", host="127.0.0.1", port=8000)
