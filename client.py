@@ -1,7 +1,7 @@
 import asyncio
 from fastmcp import Client
 
-client = Client("http://localhost:8000")
+client = Client("http://127.0.0.1:8000")
 
 async def call_tool(query: str):
     async with client:
