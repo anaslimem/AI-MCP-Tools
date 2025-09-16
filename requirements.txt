@@ -1,3 +1,4 @@
 fastmcp
 serpapi
 google-search-results
+requests
