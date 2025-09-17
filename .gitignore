@@ -132,4 +132,5 @@ Desktop.ini
 *.swp
 *.swo
 *~
-# End of Python essentials
+
+.env
