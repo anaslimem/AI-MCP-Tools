@@ -74,20 +74,6 @@ result = await client.call_tool("web_search", {"query": "OpenAI"})
 
 This server is deployed using [FastMCP Cloud](https://fastmcp.app), making it accessible online at [https://anaslimem.fastmcp.app](https://anaslimem.fastmcp.app).
 
-## Why keep this public?
-
-- **Shows practical knowledge** of building and deploying an MCP server.
-- Demonstrates basic backend skills (Python, APIs, environment management).
-- Provides a foundation for adding advanced tools and features in the future.
-- Great entry-level portfolio project for AI, backend, or protocol-based systems.
-
-## Improvements & Next Steps
-
-- Add more tools (e.g., data processing, integrations).
-- Write tests and add CI/CD.
-- Enhance documentation and provide more usage examples.
-- Add authentication and user management.
-
 ---
 
 Feel free to fork, experiment, and extend this project!
