@@ -4,19 +4,13 @@ from serpapi import GoogleSearch
 import os
 import requests
 
-load_dotenv()  # Load environment variables from .env file
-# Create an instance of FastMCP
+load_dotenv()  
 mcp = FastMCP("MCP")
-
-@mcp.tool
-def greet(name: str) -> str:
-    """Greet a person by name."""
-    return f"Hello, {name}!"
 
 @mcp.tool
 def web_search(query: str) -> str:
     """Perform a web search using Serper.dev API and return top results."""
-    api_key = os.getenv("SERPER_API_KEY")  # Put your Serper.dev key in .env
+    api_key = os.getenv("SERPER_API_KEY")  
     if not api_key:
         return "Error: SERPER_API_KEY not set."
     
