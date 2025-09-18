@@ -8,11 +8,15 @@ async def call_tool(query: str):
         result = await client.call_tool("web_search", {"query": query})
         if result is None:
             print("No result returned from web_search tool.")
-            return
+            return     
         print("=== Web Search Results ===")
         print(result)
+        if hasattr(result, "data"):
+            summary_input = result.data  
+        else:
+            summary_input = str(result)
 
-        summary = await client.call_tool("summarize_text", {"text": result})
+        summary = await client.call_tool("summarize_text", {"text": summary_input})
         if summary is None:
             print("No summary returned from summarize_text tool.")
             return
@@ -20,4 +24,4 @@ async def call_tool(query: str):
         print(summary)
 
 if __name__ == "__main__":
-    asyncio.run(call_tool("who is Donald Trump"))
+    asyncio.run(call_tool("""What are the latest advancements in AI technology?""")) 
