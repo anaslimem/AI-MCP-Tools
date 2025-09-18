@@ -16,19 +16,11 @@ This project demonstrates a basic MCP server built using the [FastMCP](https://g
 
 - **MCP Server:** Runs with FastMCP and exposes custom tools.
 - **Custom Tools:**
-  - `greet(name)`: Returns a friendly greeting.
   - `web_search(query)`: Uses the Serper.dev API to perform Google searches and returns summarized results.
 - **Environment Variables:** Uses `.env` for sensitive keys such as the Serper API key.
 - **Simple Client Example:** Includes a Python client script to call the server’s tools asynchronously.
 
 ### Example Usage
-
-#### Greet Tool
-
-```python
-result = await client.call_tool("greet", {"name": "Alice"})
-# Output: "Hello, Alice!"
-```
 
 #### Web Search Tool
 
