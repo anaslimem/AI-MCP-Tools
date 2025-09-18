@@ -49,11 +49,13 @@ def summarize_text(text: str) -> str:
         return "Error: GOOGLE_API_KEY not set."
     
     llm = ChatGoogleGenerativeAI(
-        model="gemini-pro",
+        model="gemini-2.5-pro",
         temperature=0,
         google_api_key=api_key
     )
-    prompt = f"Summarize the following text in a concise manner:\n\n{text}\n\nSummary:"
+    prompt = f"""You are an expert summarizer. Summarize the text below in concise bullet points, highlighting the key ideas only. Do not add your own opinions or unrelated information.Text:
+                 Text:{text}
+                 Summary:"""
     response = llm.invoke(prompt)
     if isinstance(response.content, str):
         return response.content
