@@ -1,4 +1,4 @@
 fastmcp
-serpapi
-google-search-results
+langchain_google_genai
 requests
+streamlit
