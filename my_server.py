@@ -1,8 +1,8 @@
 from fastmcp import FastMCP
 from dotenv import load_dotenv
-from serpapi import GoogleSearch
 import os
 import requests
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 load_dotenv()  
 mcp = FastMCP("MCP")
@@ -41,6 +41,25 @@ def web_search(query: str) -> str:
     
     return "\n".join(summaries)
 
-
+@mcp.tool
+def summarize_text(text: str) -> str:
+    """Summarize the given text using Gemini."""
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if not api_key:
+        return "Error: GOOGLE_API_KEY not set."
+    
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-pro",
+        temperature=0,
+        google_api_key=api_key
+    )
+    prompt = f"Summarize the following text in a concise manner:\n\n{text}\n\nSummary:"
+    response = llm.invoke(prompt)
+    if isinstance(response.content, str):
+        return response.content
+    elif isinstance(response.content, list):
+        return " ".join([c.get("text", "") for c in response.content if isinstance(c, dict)])
+    else:
+        return str(response.content)
 if __name__ == "__main__":
     mcp.run(transport="http", host="127.0.0.1", port=8000)
