@@ -85,5 +85,6 @@ def summarize_text(text: str) -> str:
         return " ".join([c.get("text", "") for c in response.content if isinstance(c, dict)])
     else:
         return str(response.content)
+    
 if __name__ == "__main__":
     mcp.run(transport="http", host="127.0.0.1", port=8000)

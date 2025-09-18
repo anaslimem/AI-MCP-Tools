@@ -73,3 +73,14 @@ if st.session_state['page_content']:
 if st.session_state['summary']:
     with st.expander("📝 Summary", expanded=True):
         st.markdown(st.session_state['summary'].replace("\n", "\n\n"))
+        # Compose file content with topic and summary
+        topic = query if 'query' in locals() else "Summary"
+        file_content = f"Topic: {topic}\n\n{st.session_state['summary']}"
+        st.download_button(
+            label="Download Summary as .txt",
+            data=file_content,
+            file_name="summary.txt",
+            mime="text/plain"
+        )
+
+
