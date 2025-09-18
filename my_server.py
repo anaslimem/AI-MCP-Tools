@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 import requests
 from langchain_google_genai import ChatGoogleGenerativeAI
+from bs4 import BeautifulSoup
 
 load_dotenv()  
 mcp = FastMCP("MCP")
@@ -40,6 +41,23 @@ def web_search(query: str) -> str:
         summaries.append(f"{title}: {snippet} ({link})")
     
     return "\n".join(summaries)
+
+@mcp.tool
+def fetch_page_content(url: str) -> str:
+    """Fetch the main content of a web page given its URL."""
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        html = response.text
+        soup = BeautifulSoup(html, "html.parser")
+        for script in soup(["script", "style"]):
+            script.decompose()
+        text = soup.get_text(separator="\n")
+        lines = [line.strip() for line in text.splitlines() if line.strip()]
+        return "\n\n".join(lines)
+
+    except Exception as e:
+        return f"Error fetching page content: {e}"
 
 @mcp.tool
 def summarize_text(text: str) -> str:
