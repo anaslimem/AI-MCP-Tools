@@ -71,9 +71,13 @@ def summarize_text(text: str) -> str:
         temperature=0,
         google_api_key=api_key
     )
-    prompt = f"""You are an expert summarizer. Summarize the text below in concise bullet points, highlighting the key ideas only. Do not add your own opinions or unrelated information.Text:
-                 Text:{text}
-                 Summary:"""
+    prompt = f"""
+    You are an expert summarizer. 
+    Summarize the text below in concise bullet points, highlighting the key ideas only. 
+    Do not add your own opinions or unrelated information.
+    Text:{text} 
+    Summary:
+    """
     response = llm.invoke(prompt)
     if isinstance(response.content, str):
         return response.content
