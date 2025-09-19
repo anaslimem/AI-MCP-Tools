@@ -44,6 +44,7 @@ async def call_tool(query: str):
             return
         print("\n=== Summary ===")
         print(summary)
-
+ 
+ 
 if __name__ == "__main__":
     asyncio.run(call_tool("What are the latest advancements in AI technology?"))
