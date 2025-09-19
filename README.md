@@ -28,7 +28,7 @@ This project demonstrates a basic MCP server built using the [FastMCP](https://g
 #### Web Search Tool
 
 ```python
-result = await client.call_tool("web_search", {"query": "OpenAI"})
+result = await client.call_tool("web_search", {"query": "What are the difference between chatgpt and gemini"})
 # Output: "Top 3 search results with titles, snippets, and links."
 ```
 
