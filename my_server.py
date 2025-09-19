@@ -28,7 +28,7 @@ def web_search(query: str) -> str:
     except Exception as e:
         return f"Error: {e}"
     
-    # Extract organic results
+
     results = data.get("organic", [])
     if not results:
         return f"No results found. Full response: {data}"
@@ -45,19 +45,16 @@ def web_search(query: str) -> str:
 @mcp.tool
 def fetch_page_content(url: str) -> str:
     """Fetch the main content of a web page given its URL."""
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        html = response.text
-        soup = BeautifulSoup(html, "html.parser")
-        for script in soup(["script", "style"]):
-            script.decompose()
-        text = soup.get_text(separator="\n")
-        lines = [line.strip() for line in text.splitlines() if line.strip()]
-        return "\n\n".join(lines)
+    response = requests.get(url)
+    response.raise_for_status()
+    html = response.text
+    soup = BeautifulSoup(html, "html.parser")
+    for script in soup(["script", "style"]):
+        script.decompose()
+    text = soup.get_text(separator="\n")
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    return "\n\n".join(lines)
 
-    except Exception as e:
-        return f"Error fetching page content: {e}"
 
 @mcp.tool
 def summarize_text(text: str) -> str:
