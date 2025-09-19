@@ -3,7 +3,7 @@ import asyncio
 from fastmcp import Client
 
 st.set_page_config(page_title="AI MCP Tools", page_icon="📝", layout="wide")
-st.title("AI MCP Tools Frontend")
+st.title("AI MCP Tools ")
 
 for key in ['web_result', 'page_content', 'summary', 'loading']:
     if key not in st.session_state:

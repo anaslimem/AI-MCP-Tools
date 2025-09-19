@@ -1,4 +1,4 @@
-# first_mcp_server
+# AI MCP Tools
 
 A simple implementation of an MCP (Model Context Protocol) server in Python, deployed with [FastMCP Cloud](https://anaslimem.fastmcp.app).
 
