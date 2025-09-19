@@ -17,6 +17,9 @@ This project demonstrates a basic MCP server built using the [FastMCP](https://g
 - **MCP Server:** Runs with FastMCP and exposes custom tools.
 - **Custom Tools:**
   - `web_search(query)`: Uses the Serper.dev API to perform Google searches and returns summarized results.
+  - `fetch_page_content(url)`: Fetches and extracts the main content from a web page given its URL.
+  - `summarize_text(text)`: Summarizes the given text using Gemini (Google Generative AI).
+  - `save_results(topic, content)`: Saves the summarized results to a local file on the server.
 - **Environment Variables:** Uses `.env` for sensitive keys such as the Serper API key.
 - **Simple Client Example:** Includes a Python client script to call the server’s tools asynchronously.
 
@@ -27,6 +30,20 @@ This project demonstrates a basic MCP server built using the [FastMCP](https://g
 ```python
 result = await client.call_tool("web_search", {"query": "OpenAI"})
 # Output: "Top 3 search results with titles, snippets, and links."
+```
+
+#### Fetch Page Content Tool
+
+```python
+content = await client.call_tool("fetch_page_content", {"url": "https://example.com"})
+# Output: Main text content of the page as a string.
+```
+
+#### Summarize Text Tool
+
+```python
+summary = await client.call_tool("summarize_text", {"text": content})
+# Output: Concise summary of the provided text.
 ```
 
 ## Running Locally
@@ -48,6 +65,7 @@ result = await client.call_tool("web_search", {"query": "OpenAI"})
 
    ```bash
    SERPER_API_KEY=your_serper_api_key
+   GOOGLE_API_KEY=your_google_api_key
    ```
 
 4. **Start the server:**
